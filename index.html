@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ваша точка — Сайт Шаблон</title>
+    <title>Сайт Шаблон — Главная</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .info-card .counter-box { display: none !important; }
         .info-card img { width: 100%; aspect-ratio: 600 / 650; object-fit: cover; border-radius: 10px; }
+        .weight-option .desc-hint { font-size: 11px; color: #9ca3af; font-weight: 400; margin-left: 8px; }
+        .preorder-info-block { font-size: 14.5px; color: #1e3a8a; background: #eff6ff; padding: 14px 18px; border-radius: 12px; margin-bottom: 22px; border-left: 4px solid #2563eb; line-height: 1.55; }
+        .preorder-info-block .preorder-title { display: block; font-weight: 800; margin-bottom: 4px; }
         .anchor-nav-wrapper .anchor-heading { font-size: 28px; font-weight: 800; color: #1e1e1e; letter-spacing: -0.5px; margin-bottom: 12px; }
 
         /* ===== Компактные карточки и независимая высота в сетке ===== */
@@ -29,6 +31,18 @@
         .info-card img {
             border-radius: 10px;
             margin-bottom: 12px;
+        }
+        .info-card .meta {
+            padding-top: 12px;
+            margin-top: 12px;
+            gap: 8px;
+        }
+        .weight-options {
+            gap: 6px;
+        }
+        .weight-option {
+            padding: 6px 10px;
+            border-radius: 10px;
         }
 
         /* ===== Блок описания ===== */
@@ -102,94 +116,127 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Ваши товары</a></li>
-                    <li><a href="about.html" class="active">Ваша точка</a></li>
+                    <li><a href="index.html" class="active">Ваши товары</a></li>
+                    <li><a href="about.html">Ваша точка</a></li>
                     <li><a href="contact.html">Контакты и отзывы</a></li>
                 </ul>
             </nav>
         </header>
         <main>
-            <h1 class="page-heading">О вашей точке</h1>
+            <h1 class="page-heading">Каталог товаров</h1>
+            <div class="preorder-info-block">
+                <span class="preorder-title">Заказывайте заранее — приезжайте к готовому.</span>
+                Оформите заказ из дома, выберите удобный стол или заберите на вынос.
+            </div>
             <div class="anchor-nav-wrapper">
                 <div class="anchor-heading">Каталог</div>
                 <div class="anchor-nav">
-                    <a href="#card1">Карточка 1</a>
-                    <a href="#card2">Карточка 2</a>
-                    <a href="#card3">Карточка 3</a>
-                    <a href="#card4">Карточка 4</a>
-                    <a href="#card5">Карточка 5</a>
+                    <a href="#product1">Товар 1</a>
+                    <a href="#product2">Товар 2</a>
+                    <a href="#product3">Товар 3</a>
                 </div>
             </div>
             <div class="honey-grid">
-                <article class="info-card section-anchor" id="card1">
-                    <h3>Карточка 1</h3>
-                    <img src="tochka.jpeg" alt="Точка">
+                <article class="info-card section-anchor" id="product1" data-id="1" data-name="Ваш товар #1">
+                    <h3>Ваш товар #1</h3>
+                    <img src="tovar.jpeg" alt="Товар">
+                    <div class="meta weight-meta">
+                        <div class="weight-options">
+                            <div class="weight-option" data-weight="1" data-price="0">
+                                <span class="weight-label">Опция 1 — 0 ₸</span>
+                                <div class="counter-box">
+                                    <button class="cnt-btn minus" type="button">-</button>
+                                    <span class="cnt-value">0</span>
+                                    <button class="cnt-btn plus" type="button">+</button>
+                                </div>
+                            </div>
+                            <div class="weight-option" data-weight="1.5" data-price="0">
+                                <span class="weight-label">Опция 2 — 0 ₸</span>
+                                <div class="counter-box">
+                                    <button class="cnt-btn minus" type="button">-</button>
+                                    <span class="cnt-value">0</span>
+                                    <button class="cnt-btn plus" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="description-wrapper">
                         <p class="description-content">
-                            Расскажите о своём бизнесе подробнее: когда открылись, чем занимаетесь, что для вас важно.
-                            Здесь можно упомянуть историю, миссию, ценности и то, чем вы гордитесь.
-                            Опишите вашу команду, подход к работе и то, что отличает вас от других.
-                            Такой текст помогает клиенту почувствовать доверие и понять, что вы — надёжный партнёр.
+                            Здесь вы можете разместить полноценное описание вашего товара, услуги или категории.
+                            Например, если вы продаёте цветы — расскажите о сортах, свежести, составе букета и сроках доставки.
+                            Если это меню ресторана — опишите блюдо, его состав, порцию, калорийность и особенности подачи.
+                            Если это услуги — укажите, что входит в работу, сколько времени она занимает и какие гарантии вы даёте.
+                            Чем подробнее и понятнее описание, тем проще клиенту принять решение о заказе.
                         </p>
                         <button class="toggle-description-btn" aria-label="Развернуть описание">
                             <span class="arrow">▾</span>
                         </button>
                     </div>
                 </article>
-                <article class="info-card section-anchor" id="card2">
-                    <h3>Карточка 2</h3>
-                    <img src="tochka.jpeg" alt="Точка">
+                <article class="info-card section-anchor" id="product2" data-id="2" data-name="Ваш товар #2">
+                    <h3>Ваш товар #2</h3>
+                    <img src="tovar.jpeg" alt="Товар">
+                    <div class="meta weight-meta">
+                        <div class="weight-options">
+                            <div class="weight-option" data-weight="1" data-price="0">
+                                <span class="weight-label">Опция 1 — 0 ₸</span>
+                                <div class="counter-box">
+                                    <button class="cnt-btn minus" type="button">-</button>
+                                    <span class="cnt-value">0</span>
+                                    <button class="cnt-btn plus" type="button">+</button>
+                                </div>
+                            </div>
+                            <div class="weight-option" data-weight="1.5" data-price="0">
+                                <span class="weight-label">Опция 2 — 0 ₸</span>
+                                <div class="counter-box">
+                                    <button class="cnt-btn minus" type="button">-</button>
+                                    <span class="cnt-value">0</span>
+                                    <button class="cnt-btn plus" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="description-wrapper">
                         <p class="description-content">
-                            Расскажите о своих услугах: что именно вы предлагаете клиентам, как это работает и какие цены.
-                            Опишите категории товаров или услуг, укажите акции и специальные предложения.
-                            Можно добавить условия доставки, самовывоза или бронирования.
-                            Чем конкретнее и понятнее, тем легче клиенту принять решение и сделать заказ.
+                            Адаптируйте эту карточку под свой бизнес: букеты, блюда из меню, услуги мастерской или авторские наборы.
+                            Опишите, чем ваш товар отличается от других — качеством, свежестью, составом или особенным подходом.
+                            Можно указать размеры, вес, сроки изготовления и рекомендации по использованию.
+                            Чем больше деталей, тем больше доверия у клиента и тем выше вероятность заказа.
                         </p>
                         <button class="toggle-description-btn" aria-label="Развернуть описание">
                             <span class="arrow">▾</span>
                         </button>
                     </div>
                 </article>
-                <article class="info-card section-anchor" id="card3">
-                    <h3>Карточка 3</h3>
-                    <img src="tochka.jpeg" alt="Точка">
-                    <div class="description-wrapper">
-                        <p class="description-content">
-                            Преимущества вашей компании: почему клиенты выбирают именно вас, а не конкурентов.
-                            Это может быть уникальная технология, качество ингредиентов, скорость работы, гарантия или сервис.
-                            Перечислите главные причины, по которым вам можно доверять.
-                            Хорошо работают конкретные факты: «готовим за 15 минут», «только свежие продукты», «бесплатная доставка от суммы».
-                        </p>
-                        <button class="toggle-description-btn" aria-label="Развернуть описание">
-                            <span class="arrow">▾</span>
-                        </button>
+                <article class="info-card section-anchor" id="product3" data-id="3" data-name="Ваш товар #3">
+                    <h3>Ваш товар #3</h3>
+                    <img src="tovar.jpeg" alt="Товар">
+                    <div class="meta weight-meta">
+                        <div class="weight-options">
+                            <div class="weight-option" data-weight="1" data-price="0">
+                                <span class="weight-label">Опция 1 — 0 ₸</span>
+                                <div class="counter-box">
+                                    <button class="cnt-btn minus" type="button">-</button>
+                                    <span class="cnt-value">0</span>
+                                    <button class="cnt-btn plus" type="button">+</button>
+                                </div>
+                            </div>
+                            <div class="weight-option" data-weight="1.5" data-price="0">
+                                <span class="weight-label">Опция 2 — 0 ₸</span>
+                                <div class="counter-box">
+                                    <button class="cnt-btn minus" type="button">-</button>
+                                    <span class="cnt-value">0</span>
+                                    <button class="cnt-btn plus" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </article>
-                <article class="info-card section-anchor" id="card4">
-                    <h3>Карточка 4</h3>
-                    <img src="tochka.jpeg" alt="Точка">
                     <div class="description-wrapper">
                         <p class="description-content">
-                            Контактная информация и местоположение вашей точки: адрес, телефон, email, график работы.
-                            Укажите, как удобнее всего с вами связаться — звонком, в WhatsApp или через форму на сайте.
-                            Можно добавить ориентиры рядом со входом, чтобы клиенту было проще вас найти.
-                            Чем проще с вами связаться — тем больше клиентов дойдёт до заказа.
-                        </p>
-                        <button class="toggle-description-btn" aria-label="Развернуть описание">
-                            <span class="arrow">▾</span>
-                        </button>
-                    </div>
-                </article>
-                <article class="info-card section-anchor" id="card5">
-                    <h3>Карточка 5</h3>
-                    <img src="tochka.jpeg" alt="Точка">
-                    <div class="description-wrapper">
-                        <p class="description-content">
-                            Отзывы клиентов и рейтинг — лучшая реклама для вашего бизнеса.
-                            Здесь можно поделиться успехами, привести примеры реальных отзывов или показать средний рейтинг.
-                            Расскажите, что клиенты чаще всего хвалят: скорость, качество, атмосферу или сервис.
-                            Хорошие отзывы создают доверие и помогают новым клиентам решиться на первый заказ.
+                            Универсальный шаблон под любой тип товаров или услуг — от еды и напитков до одежды и техники.
+                            Расскажите клиенту главное: что это, для кого, почему стоит выбрать именно вас и что входит в стоимость.
+                            Здесь же можно указать акции, скидки, условия доставки или самовывоза.
+                            Хорошее описание экономит время и клиенту, и вам — меньше вопросов, больше заказов.
                         </p>
                         <button class="toggle-description-btn" aria-label="Развернуть описание">
                             <span class="arrow">▾</span>
@@ -231,7 +278,6 @@
         <div id="cart-popup-items" class="cart-popup-items"></div>
     </div>
     <div id="order-bar" class="order-bar hidden">
-        <div class="cluster-plate-bar">Нажмите на «ЗАКАЗ» — откроется состав. Затем — «в Ватсап»</div>
         <div class="order-bar-content">
             <div id="order-bar-toggle" class="order-info">
                 <div class="order-title-row">
