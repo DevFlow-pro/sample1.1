@@ -43,16 +43,19 @@
             line-height: 1.5;
             margin: 0;
             overflow: hidden;
+            /* Плавная анимация высоты и прозрачности */
+            max-height: 42px;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.3s ease;
+            opacity: 1;
         }
         /* Свёрнуто: ровно 2 строки (14px × 1.5 = 21px → 2 строки = 42px) */
         .description-content:not(.expanded) {
             max-height: 42px;
-            overflow: hidden;
         }
-        /* Раскрыто: полный текст */
+        /* Раскрыто: полный текст с плавным увеличением высоты */
         .description-content.expanded {
-            max-height: none;
-            overflow: visible;
+            max-height: 600px;
         }
 
         /* ===== Объёмный широкий треугольник ===== */
@@ -67,6 +70,26 @@
             margin-top: 4px;
             cursor: pointer;
             line-height: 1;
+            position: relative;
+        }
+        /* Мягкая «изюминка»: деликатная подсветка-градиент под кнопкой при наведении */
+        .toggle-description-btn::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 2px;
+            transform: translateX(-50%) scaleX(0.6);
+            width: 64px;
+            height: 22px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, rgba(17, 24, 39, 0.12) 0%, rgba(17, 24, 39, 0) 70%);
+            opacity: 0;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            pointer-events: none;
+        }
+        .toggle-description-btn:hover::before {
+            opacity: 1;
+            transform: translateX(-50%) scaleX(1);
         }
         .toggle-description-btn .arrow {
             display: inline-block;
@@ -74,10 +97,13 @@
             color: #111827;
             transform: scaleX(1.32);
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-            transition: transform 0.25s ease, color 0.2s ease;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                        color 0.2s ease,
+                        text-shadow 0.2s ease;
         }
         .toggle-description-btn:hover .arrow {
             color: #000000;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.28);
         }
         .toggle-description-btn .arrow.expanded {
             transform: scaleX(1.32) rotate(180deg);
