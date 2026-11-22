@@ -309,47 +309,46 @@ nav a.active::after {
 }
 
 .description-content {
-    font-size: 14px;
-    line-height: 1.5;
-    color: #111827;
-    font-weight: 500;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
     margin: 0;
     overflow: hidden;
-}
-
-.description-content:not(.expanded) {
-    max-height: 42px;
-    overflow: hidden;
+    transition: max-height 0.35s ease;
+    max-height: 72px;
+    mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
 }
 
 .description-content.expanded {
-    max-height: none;
-    overflow: visible;
+    max-height: 1500px;
+    mask-image: none;
+    -webkit-mask-image: none;
 }
 
 .toggle-description-btn {
     background: none;
     border: none;
-    color: #111827;
-    font-size: 26px;
+    color: var(--text-muted);
+    font-size: 24px;
     cursor: pointer;
-    padding: 6px 10px;
-    margin-top: 4px;
-    transition: transform 0.25s ease, color 0.2s ease;
+    padding: 5px 10px;
+    margin-top: 5px;
+    transition: transform 0.3s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    line-height: 1;
+    font-weight: 300;
 }
 
 .toggle-description-btn:hover { 
-    color: #000000; 
+    color: var(--text-dark); 
 }
 
 .toggle-description-btn .arrow {
     display: inline-block;
-    transition: transform 0.25s ease;
+    transition: transform 0.3s ease;
 }
 
 .toggle-description-btn .arrow.expanded {
@@ -841,22 +840,21 @@ nav a.active::after {
 
 .to-top-btn {
     position: fixed;
-    bottom: 24px;
+    bottom: 90px;
     right: 20px;
     background: #1e1e1e;
     color: white;
-    width: 52px;
-    height: 52px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.15);
+    border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    font-weight: 700;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    transition: bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, transform 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
     opacity: 0;
     pointer-events: none;
     z-index: 998;
@@ -869,7 +867,7 @@ nav a.active::after {
 
 .to-top-btn:hover { 
     background: #374151; 
-    transform: scale(1.08); 
+    transform: scale(1.1); 
 }
 
 /* ============ FOOTER ============ */
@@ -1308,11 +1306,11 @@ footer {
     }
 
     .to-top-btn {
-        bottom: 22px;
-        right: 16px;
-        width: 50px;
-        height: 50px;
-        font-size: 23px;
+        bottom: 130px;
+        right: 10px;
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
     }
 
     .anchor-nav a {

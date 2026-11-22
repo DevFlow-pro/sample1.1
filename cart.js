@@ -308,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateFavoritesUI();
         if (orderConfirmModal.classList.contains('active')) updateConfirmModalContent();
         localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
-        requestAnimationFrame(updateToTopPosition);
+        updateToTopPosition();
     }
 
     function updateFavoritesUI() {
@@ -406,13 +406,13 @@ document.addEventListener('DOMContentLoaded', () => {
         updateConfirmModalContent();
         modalBackdrop.style.display = 'block';
         orderConfirmModal.classList.add('active');
-        requestAnimationFrame(updateToTopPosition);
+        updateToTopPosition();
     }
 
     function closeOrderConfirmModal() {
         orderConfirmModal.classList.remove('active');
         modalBackdrop.style.display = 'none';
-        requestAnimationFrame(updateToTopPosition);
+        updateToTopPosition();
     }
 
     function updateConfirmModalContent() {
@@ -559,7 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!cartPopup.classList.contains('active') && saveFavInputPanel) {
                 saveFavInputPanel.classList.add('hidden');
             }
-            requestAnimationFrame(updateToTopPosition);
+            updateToTopPosition();
         });
     }
 
@@ -567,7 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
         closePopupBtn.addEventListener('click', () => {
             cartPopup.classList.remove('active');
             if (saveFavInputPanel) saveFavInputPanel.classList.add('hidden');
-            requestAnimationFrame(updateToTopPosition);
+            updateToTopPosition();
         });
     }
 
@@ -575,14 +575,14 @@ document.addEventListener('DOMContentLoaded', () => {
         favoritesToggleBtn.addEventListener('click', () => {
             if (cartPopup) cartPopup.classList.remove('active');
             favoritesPopup.classList.toggle('active');
-            requestAnimationFrame(updateToTopPosition);
+            updateToTopPosition();
         });
     }
 
     if (closeFavoritesPopup && favoritesPopup) {
         closeFavoritesPopup.addEventListener('click', () => {
             favoritesPopup.classList.remove('active');
-            requestAnimationFrame(updateToTopPosition);
+            updateToTopPosition();
         });
     }
 
@@ -599,7 +599,6 @@ document.addEventListener('DOMContentLoaded', () => {
         openSaveFavPanelBtn.addEventListener('click', () => {
             saveFavInputPanel.classList.toggle('hidden');
             if (!saveFavInputPanel.classList.contains('hidden')) saveFavNameInput.focus();
-            requestAnimationFrame(updateToTopPosition);
         });
     }
 
@@ -607,46 +606,24 @@ document.addEventListener('DOMContentLoaded', () => {
         confirmSaveFavBtn.addEventListener('click', () => {
             saveToFavorites(saveFavNameInput);
             if (saveFavInputPanel) saveFavInputPanel.classList.add('hidden');
-            requestAnimationFrame(updateToTopPosition);
         });
     }
 
     function updateToTopPosition() {
         const toTopBtn = document.getElementById("toTopBtn");
         if (!toTopBtn) return;
+        const isMobile = window.innerWidth <= 767;
+        const isFavActive = favoritesPopup && favoritesPopup.classList.contains('active');
+        const isCartActive = cartPopup && cartPopup.classList.contains('active');
 
-        const isMobile = window.innerWidth <= 768;
-        const baseBottom = isMobile ? 22 : 24;
-        const gap = isMobile ? 12 : 14;
-
-        let targetBottom = baseBottom;
-
-        const isOrderBarVisible = orderBar && !orderBar.classList.contains('hidden');
-        if (isOrderBarVisible) {
-            const barRect = orderBar.getBoundingClientRect();
-            const barHeight = barRect.height || (isMobile ? 112 : 84);
-            const barBottomOffset = Math.max(15, window.innerHeight - barRect.bottom);
-            targetBottom = barBottomOffset + barHeight + gap;
+        if (isMobile && (isFavActive || isCartActive)) {
+            toTopBtn.style.bottom = '200px';
+        } else {
+            toTopBtn.style.bottom = '';
         }
-
-        const activePopup = [cartPopup, favoritesPopup, orderConfirmModal].find(
-            p => p && p.classList.contains('active')
-        );
-        if (activePopup) {
-            const popupRect = activePopup.getBoundingClientRect();
-            const popupHeight = popupRect.height || 0;
-            const popupBottomOffset = Math.max(85, window.innerHeight - popupRect.bottom);
-            const abovePopup = popupBottomOffset + popupHeight + gap;
-            if (abovePopup > targetBottom) {
-                targetBottom = abovePopup;
-            }
-        }
-
-        toTopBtn.style.bottom = `${Math.round(targetBottom)}px`;
-        toTopBtn.style.right = isMobile ? '16px' : '20px';
     }
 
-    window.addEventListener('resize', () => requestAnimationFrame(updateToTopPosition));
+    window.addEventListener('resize', updateToTopPosition);
 
     let lightbox = document.getElementById('lightbox');
     let lightboxImg = document.getElementById('lightbox-img');
